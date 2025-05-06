@@ -1,0 +1,15 @@
+{
+  "postman.settings.dotenv-detection-notification-visibility": false,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "local container db",
+      "database": "mydb",
+      "username": "user",
+      "password": "password"
+    }
+  ]
+}
