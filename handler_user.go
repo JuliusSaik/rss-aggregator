@@ -39,3 +39,16 @@ func (apiCfg *apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Reques
 func (apiCfg *apiConfig) handlerGetUserByApiKey(w http.ResponseWriter, r *http.Request, user db.User) {
 	respondWithJSON(w, 200, databaseToUser(user))
 }
+
+func (apiCfg *apiConfig) handlerGetPostsByUserFeedFollows(w http.ResponseWriter, r *http.Request, user db.User) {
+	posts, err := apiCfg.DB.GetPostsForUser(r.Context(), db.GetPostsForUserParams{
+		UserID: user.ID,
+		Limit:  50,
+	})
+	if err != nil {
+		respondWithError(w, 400, fmt.Sprint("Could not get post user follows", err))
+		return
+	}
+	respondWithJSON(w, 200, posts)
+
+}
